@@ -3,79 +3,121 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Platform Shock — The Geopolitics of Technology (Teaching Demo)</title>
+  <meta name="color-scheme" content="light" />
+  <title>Platform Shock — Tech Power Basics</title>
   <style>
     :root{
-      --bg:#0b0c10; --panel:#11131a; --panel2:#151826; --text:#e8eaf0; --muted:#a6adbb;
-      --accent:#7aa2ff; --good:#41d17d; --warn:#ffcc66; --bad:#ff6b6b; --line:#262a3a;
-      --chip:#1b1f2f;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg:#f5f7ff;
+      --panel:#ffffff;
+      --panel2:#eef2ff;
+      --text:#101828;
+      --muted:#475467;
+      --accent:#4f46e5;
+      --accent2:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --line:#e5e7eb;
+      --chip:#f1f5f9;
+      --shadow: 0 10px 30px rgba(15,23,42,.08);
       --radius: 16px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
     * { box-sizing: border-box; }
     body{
-      margin:0; background: radial-gradient(1200px 800px at 20% 0%, rgba(122,162,255,.18), transparent 55%),
-                         radial-gradient(1000px 700px at 90% 20%, rgba(65,209,125,.10), transparent 50%),
-                         var(--bg);
-      color:var(--text); font-family:var(--sans);
+      margin:0;
+      background:
+        radial-gradient(1100px 680px at 0% 0%, rgba(79,70,229,.12), transparent 55%),
+        radial-gradient(900px 600px at 100% 10%, rgba(34,197,94,.10), transparent 50%),
+        var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
     }
     header{
-      padding: 18px 18px 6px;
+      padding: 18px 18px 10px;
       position: sticky; top:0; z-index:20;
-      background: linear-gradient(to bottom, rgba(11,12,16,.92), rgba(11,12,16,.62));
+      background: rgba(245,247,255,.9);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(38,42,58,.6);
+      border-bottom: 1px solid var(--line);
     }
     header .top{
       display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
     }
-    h1{ margin:0; font-size: 18px; letter-spacing:.2px; }
-    .subtitle{ margin-top:4px; color:var(--muted); font-size: 13px; max-width: 820px; line-height:1.35; }
+    h1{ margin:0; font-size: 20px; letter-spacing:.2px; }
+    .subtitle{ margin-top:4px; color:var(--muted); font-size: 14px; max-width: 820px; line-height:1.45; }
     .pillrow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .pill{
-      background: rgba(27,31,47,.9);
-      border: 1px solid rgba(38,42,58,.9);
-      padding: 8px 10px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      padding: 7px 10px;
       border-radius: 999px;
       font-size: 12px;
       color: var(--muted);
-      display:flex; align-items:center; gap:8px;
+      display:flex; align-items:center; gap:6px;
     }
     .pill strong{ color: var(--text); font-weight:600; }
-    .container{
-      max-width: 1200px; margin: 16px auto 60px; padding: 0 18px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 14px;
+    .pillbutton{
+      background: var(--chip);
+      border: 1px solid var(--line);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      display:flex; align-items:center; gap:6px;
+      cursor:pointer;
     }
-    @media (max-width: 980px){
-      .container{ grid-template-columns: 1fr; }
+    .pillbutton:hover{ background:#eaf0ff; }
+    .container{
+      max-width: 1100px; margin: 16px auto 60px; padding: 0 18px;
+      display:grid; gap: 14px;
     }
     .card{
-      background: linear-gradient(180deg, rgba(17,19,26,.94), rgba(17,19,26,.84));
-      border: 1px solid rgba(38,42,58,.85);
+      background: var(--panel);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
     .card h2{
-      margin:0; padding: 14px 14px 10px;
-      font-size: 14px; font-weight: 650;
-      border-bottom: 1px solid rgba(38,42,58,.6);
-      background: rgba(21,24,38,.55);
+      margin:0; padding: 14px 16px 10px;
+      font-size: 15px; font-weight: 650;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel2);
+      display:flex; gap:8px; align-items:center;
     }
-    .card .body{ padding: 14px; }
+    .card .body{ padding: 16px; }
     .muted{ color: var(--muted); }
+    .intro-grid{
+      display:grid; gap: 12px;
+      grid-template-columns: 2fr 1fr;
+    }
+    @media (max-width: 900px){
+      .intro-grid{ grid-template-columns: 1fr; }
+    }
+    .quicklist{
+      display:grid; gap:6px; margin: 0; padding-left: 18px; color: var(--muted);
+      font-size: 13px; line-height: 1.4;
+    }
+    .legend{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      font-size: 12px; color: var(--muted);
+      margin-top: 10px;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 999px; display:inline-block; margin-right:6px;
+    }
+    .dot.rnd{ background: #6366f1; }
+    .dot.dep{ background: #f97316; }
+    .dot.reg{ background: #06b6d4; }
+    .dot.work{ background: #22c55e; }
     .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-    @media (max-width: 520px){ .grid2{ grid-template-columns: 1fr; } }
+    @media (max-width: 680px){ .grid2{ grid-template-columns: 1fr; } }
     .btnbar{ display:flex; gap:10px; flex-wrap:wrap; }
     button{
-      background: rgba(122,162,255,.18);
+      background: rgba(79,70,229,.12);
       color: var(--text);
-      border: 1px solid rgba(122,162,255,.35);
+      border: 1px solid rgba(79,70,229,.25);
       padding: 10px 12px;
       border-radius: 12px;
       font-size: 13px;
@@ -83,124 +125,117 @@
       transition: transform .04s ease, background .15s ease, border .15s ease;
       user-select:none;
     }
-    button:hover{ background: rgba(122,162,255,.26); }
+    button:hover{ background: rgba(79,70,229,.18); }
     button:active{ transform: translateY(1px); }
     button.secondary{
-      background: rgba(27,31,47,.85);
-      border: 1px solid rgba(38,42,58,.85);
+      background: #ffffff;
+      border: 1px solid var(--line);
     }
-    button.secondary:hover{ background: rgba(27,31,47,.98); }
+    button.secondary:hover{ background: #f8fafc; }
     button.danger{
-      background: rgba(255,107,107,.18);
-      border: 1px solid rgba(255,107,107,.32);
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.28);
     }
-    button.danger:hover{ background: rgba(255,107,107,.25); }
+    button.danger:hover{ background: rgba(239,68,68,.18); }
     button.good{
-      background: rgba(65,209,125,.16);
-      border: 1px solid rgba(65,209,125,.32);
+      background: rgba(34,197,94,.14);
+      border: 1px solid rgba(34,197,94,.35);
     }
-    button.good:hover{ background: rgba(65,209,125,.24); }
-    button:disabled{
-      opacity:.5; cursor:not-allowed;
-    }
+    button.good:hover{ background: rgba(34,197,94,.2); }
+    button:disabled{ opacity:.5; cursor:not-allowed; }
     .table{
       width:100%;
       border-collapse: collapse;
       font-size: 12px;
+      background: #fff;
     }
     .table th, .table td{
       padding: 10px 10px;
-      border-bottom: 1px solid rgba(38,42,58,.7);
+      border-bottom: 1px solid var(--line);
       text-align:left;
       vertical-align: top;
     }
-    .table th{ color: var(--muted); font-weight: 650; }
+    .table th{ color: var(--muted); font-weight: 650; background: #f8fafc; }
     .kpi{
       display:flex; gap:10px; flex-wrap:wrap; align-items:center;
       margin-top: 10px;
     }
     .chip{
-      background: rgba(27,31,47,.9);
-      border: 1px solid rgba(38,42,58,.85);
-      padding: 8px 10px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      padding: 7px 10px;
       border-radius: 999px;
       font-size: 12px;
       color: var(--muted);
     }
     .chip strong{ color: var(--text); font-weight: 650; }
-    .sliders{
-      display:grid; gap:10px;
-    }
+    .sliders{ display:grid; gap:10px; }
     .sliderrow{
-      display:grid; grid-template-columns: 140px 1fr 52px;
+      display:grid; grid-template-columns: 150px 1fr 60px;
       gap:10px; align-items:center;
-      font-size: 12px;
-      color: var(--muted);
+      font-size: 12px; color: var(--muted);
     }
-    .sliderrow label{ color: var(--muted); }
-    input[type="range"]{ width:100%; }
+    input[type="range"]{ width:100%; accent-color: var(--accent); }
     .num{
       font-family: var(--mono);
       color: var(--text);
       text-align:right;
-      background: rgba(27,31,47,.9);
-      border: 1px solid rgba(38,42,58,.85);
+      background: #fff;
+      border: 1px solid var(--line);
       border-radius: 10px;
       padding: 6px 8px;
     }
     .scorebox{
       display:grid; grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top: 12px;
+      gap:10px; margin-top: 12px;
     }
     .scorecard{
-      background: rgba(21,24,38,.75);
-      border: 1px solid rgba(38,42,58,.75);
+      background: #f8fafc;
+      border: 1px solid var(--line);
       border-radius: 14px;
       padding: 10px 10px;
     }
     .scorecard .label{ color: var(--muted); font-size: 12px; }
     .scorecard .value{ font-family: var(--mono); font-size: 16px; margin-top: 4px; }
-    .ranklist{
-      margin-top: 10px;
-      display:grid; gap:8px;
-    }
+    .ranklist{ margin-top: 10px; display:grid; gap:8px; }
     .rankitem{
-      display:flex; justify-content:space-between; align-items:center; gap:10px;
-      background: rgba(21,24,38,.65);
-      border: 1px solid rgba(38,42,58,.65);
+      background: #fff;
+      border: 1px solid var(--line);
       border-radius: 12px;
       padding: 8px 10px;
       font-size: 12px;
+      display:grid;
+      gap:6px;
     }
-    .rankitem .left{
-      display:flex; gap:10px; align-items:center; min-width: 0;
+    .ranktop{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
     }
+    .rankitem .left{ display:flex; gap:10px; align-items:center; min-width: 0; }
     .badge{
       width: 22px; height: 22px; border-radius: 999px;
       display:flex; align-items:center; justify-content:center;
       font-size: 12px; font-family: var(--mono);
-      background: rgba(122,162,255,.18);
-      border: 1px solid rgba(122,162,255,.35);
+      background: rgba(79,70,229,.14);
+      border: 1px solid rgba(79,70,229,.35);
       flex: 0 0 auto;
     }
     .rankitem .country{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .rankitem .score{ font-family: var(--mono); color: var(--text); }
+    .rankbar{ height: 8px; background: #eef2ff; border-radius: 999px; overflow:hidden; }
+    .rankfill{ height:100%; background: linear-gradient(90deg, #4f46e5, #22c55e); width:0%; }
     .scenario{
-      background: rgba(21,24,38,.65);
-      border: 1px solid rgba(38,42,58,.65);
+      background: #f8fafc;
+      border: 1px solid var(--line);
       border-radius: 14px;
       padding: 12px;
       margin-bottom: 10px;
     }
     .scenario h3{ margin:0 0 6px; font-size: 13px; }
     .scenario p{ margin:0; color: var(--muted); font-size: 12px; line-height:1.45; }
-    .roles{
-      display:grid; gap:10px;
-    }
+    .roles{ display:grid; gap:10px; }
     .rolecard{
-      background: rgba(21,24,38,.65);
-      border: 1px solid rgba(38,42,58,.65);
+      background: #fff;
+      border: 1px solid var(--line);
       border-radius: 14px;
       padding: 12px;
     }
@@ -213,8 +248,8 @@
       font-size: 11px;
       padding: 4px 8px;
       border-radius: 999px;
-      background: rgba(27,31,47,.9);
-      border: 1px solid rgba(38,42,58,.85);
+      background: #f8fafc;
+      border: 1px solid var(--line);
       color: var(--muted);
       white-space:nowrap;
     }
@@ -224,14 +259,11 @@
       font-size: 12px;
       line-height: 1.35;
     }
-    .inputs{
-      display:grid; gap:10px;
-      margin-top: 10px;
-    }
+    .inputs{ display:grid; gap:10px; margin-top: 10px; }
     textarea, select, input[type="text"]{
       width:100%;
-      background: rgba(27,31,47,.9);
-      border: 1px solid rgba(38,42,58,.85);
+      background: #fff;
+      border: 1px solid var(--line);
       color: var(--text);
       border-radius: 12px;
       padding: 10px;
@@ -239,16 +271,12 @@
       outline:none;
     }
     textarea{ min-height: 110px; resize: vertical; }
-    .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
+    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
     @media (max-width: 520px){ .row{ grid-template-columns: 1fr; } }
     .timer{
       display:flex; justify-content:space-between; align-items:center; gap:10px;
-      background: rgba(21,24,38,.65);
-      border: 1px solid rgba(38,42,58,.65);
+      background: #f8fafc;
+      border: 1px solid var(--line);
       border-radius: 14px;
       padding: 10px 12px;
       margin-bottom: 10px;
@@ -258,27 +286,15 @@
     .progress{
       height: 10px;
       border-radius: 999px;
-      background: rgba(27,31,47,.85);
-      border: 1px solid rgba(38,42,58,.85);
+      background: #fff;
+      border: 1px solid var(--line);
       overflow:hidden;
       margin-top: 8px;
     }
-    .bar{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, rgba(122,162,255,.85), rgba(65,209,125,.85));
-    }
-    .footer{
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 12px;
-      line-height:1.45;
-    }
+    .bar{ height:100%; width:0%; background: linear-gradient(90deg, #4f46e5, #22c55e); }
+    .footer{ color: var(--muted); font-size: 12px; margin-top: 12px; line-height:1.45; }
     .small{ font-size: 12px; color: var(--muted); }
-    .hr{
-      height:1px; background: rgba(38,42,58,.6);
-      margin: 12px 0;
-    }
+    .hr{ height:1px; background: var(--line); margin: 12px 0; }
     .hidden{ display:none !important; }
     .mono{ font-family: var(--mono); }
   </style>
@@ -288,45 +304,66 @@
 <header>
   <div class="top">
     <div>
-      <h1>Platform Shock — Technology as Power (Teaching Demo)</h1>
+      <h1>Platform Shock — Tech Power Basics</h1>
       <div class="subtitle">
-        A 10-minute web simulation for <span class="mono">The Geopolitics of Technology</span>.
-        Students compare indicators, set weights, then make a constrained choice under a platform disruption.
+        A short, easy-to-run class simulation. Students adjust simple indicators, see rankings update,
+        then choose a response to a sudden platform cutoff.
       </div>
     </div>
     <div class="pillrow">
       <div class="pill"><strong>Phase</strong> <span id="phaseLabel">Setup</span></div>
       <div class="pill"><strong>Timer</strong> <span id="timerMini">--:--</span></div>
-      <div class="pill"><strong>Export</strong> <span class="mono">JSON/CSV</span></div>
+      <button class="pillbutton" type="button" id="exportPill" aria-label="Scroll to export section">
+        <strong>Export</strong> <span class="mono">JSON/CSV</span>
+      </button>
     </div>
   </div>
 </header>
 
 <div class="container">
-  <!-- LEFT: Quant + Scenario -->
   <section class="card">
-    <h2>1) Quant baseline → weighted leverage score</h2>
+    <h2>🚀 Quick start</h2>
+    <div class="body intro-grid">
+      <div class="small">
+        <strong>Goal:</strong> practice linking numbers to political judgment. Use the table + weights,
+        then justify a choice in plain language.
+      </div>
+      <ul class="quicklist">
+        <li>Step 1: adjust weights (sliders).</li>
+        <li>Step 2: read the scenario.</li>
+        <li>Step 3: pick a role + decision.</li>
+        <li>Step 4: export for debrief.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>1) Simple indicators → leverage score</h2>
     <div class="body">
       <div class="small">
-        Students use four indicators (illustrative values) and choose weights. The purpose is to show that “quant” can support,
-        but cannot settle, political interpretation.
+        Use four indicators only. The values are illustrative and just for discussion.
       </div>
 
-      <div class="hr"></div>
+      <div class="legend">
+        <span><span class="dot rnd"></span>R&amp;D</span>
+        <span><span class="dot dep"></span>Dependency (lower is better)</span>
+        <span><span class="dot reg"></span>Regulation</span>
+        <span><span class="dot work"></span>Workforce</span>
+      </div>
 
       <table class="table" id="dataTable" aria-label="Technology leverage indicators table"></table>
 
       <div class="kpi">
-        <span class="chip"><strong>Scoring:</strong> normalized 0–100</span>
-        <span class="chip"><strong>Dependency:</strong> lower = better</span>
-        <span class="chip"><strong>Weights:</strong> sum to 1.00</span>
+        <span class="chip"><strong>Scores:</strong> 0–100</span>
+        <span class="chip"><strong>Weights:</strong> auto-normalized</span>
+        <span class="chip"><strong>Tip:</strong> move one slider a lot to see shifts</span>
       </div>
 
       <div class="hr"></div>
 
       <div class="grid2">
         <div>
-          <div class="muted" style="font-size:12px; margin-bottom:8px;">Set weights (drag sliders)</div>
+          <div class="muted" style="font-size:12px; margin-bottom:8px;">Adjust weights (drag sliders)</div>
           <div class="sliders">
             <div class="sliderrow">
               <label for="wRnD">R&amp;D (% GDP)</label>
@@ -356,73 +393,74 @@
               <div class="value" id="weightSum">1.00</div>
             </div>
             <div class="scorecard">
-              <div class="label">Interpretation cue</div>
+              <div class="label">Dominant lens</div>
               <div class="value" id="cueText" style="font-size:13px; font-family:var(--sans);">Balanced</div>
             </div>
           </div>
 
           <div class="btnbar" style="margin-top:12px;">
-            <button class="secondary" id="resetWeights">Reset weights</button>
-            <button class="secondary" id="randomWeights">Random weights</button>
+            <button class="secondary" type="button" id="resetWeights">Reset weights</button>
+            <button class="secondary" type="button" id="randomWeights">Random weights</button>
           </div>
         </div>
 
         <div>
-          <div class="muted" style="font-size:12px; margin-bottom:8px;">Ranked leverage (with your weights)</div>
+          <div class="muted" style="font-size:12px; margin-bottom:8px;">Live ranking (updates as you drag)</div>
           <div class="ranklist" id="rankList"></div>
           <div class="footer">
-            Instructor tip: ask, “Which country moved up or down when you changed weights? What does that reveal about your theory of power?”
+            Discussion prompt: “Who moved most when weights changed, and why?”
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="hr"></div>
-
+  <section class="card">
+    <h2>2) Scenario → choose a response</h2>
+    <div class="body">
       <div class="scenario">
         <h3>Scenario: “Platform Shock”</h3>
         <p>
-          A dominant cloud/AI platform announces an immediate restriction on access for “compliance reasons” after a geopolitical dispute.
-          Some actors lose model access and compute credits within <span class="mono">72 hours</span>. Others can offer alternatives, but at political cost.
+          A major cloud/AI platform cuts access after a political dispute. Some actors lose models and compute
+          within <span class="mono">72 hours</span>.
         </p>
       </div>
 
       <div class="scenario">
-        <h3>Decision task</h3>
+        <h3>Your task (2–3 minutes)</h3>
         <p>
-          Your group must choose a response (regulate, substitute, bargain, align, or stabilize). You must justify the choice using at least one indicator
-          from the table and link it to <span class="mono">capability</span>, <span class="mono">control</span>, or <span class="mono">legitimacy</span>.
+          Pick a response and justify it using one table indicator. Link your reasoning to
+          <span class="mono">capability</span>, <span class="mono">control</span>, or <span class="mono">legitimacy</span>.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- RIGHT: Roles + Timer + Decisions -->
-  <aside class="card">
-    <h2>2) Roles, timer, decisions, and debrief export</h2>
+  <section class="card" id="decisionCard">
+    <h2>3) Roles, timer, and decision form</h2>
     <div class="body">
       <div class="timer">
         <div>
-          <div class="tleft">Simulation timer</div>
+          <div class="tleft">Class timer</div>
           <div class="tvalue" id="timerMain">--:--</div>
           <div class="progress" aria-hidden="true"><div class="bar" id="timeBar"></div></div>
         </div>
         <div class="btnbar">
-          <button class="good" id="startBtn">Start 5:00</button>
-          <button class="secondary" id="pauseBtn" disabled>Pause</button>
-          <button class="danger" id="resetBtn">Reset</button>
+          <button class="good" type="button" id="startBtn">Start 5:00</button>
+          <button class="secondary" type="button" id="pauseBtn" disabled>Pause</button>
+          <button class="danger" type="button" id="resetBtn">Reset</button>
         </div>
       </div>
 
       <div class="small">
-        Use this in-class: assign roles, click <span class="mono">Start</span>, groups fill in their decision.
-        You can export responses for the Q&amp;A or post-class reflection.
+        Click <span class="mono">Start</span>, assign roles, then save the group’s decision.
       </div>
 
       <div class="hr"></div>
 
       <div class="btnbar">
-        <button class="secondary" id="assignRolesBtn">Auto-assign roles (10 people)</button>
-        <button class="secondary" id="clearRolesBtn">Clear roles</button>
+        <button class="secondary" type="button" id="assignRolesBtn">Auto-assign roles (10 people)</button>
+        <button class="secondary" type="button" id="clearRolesBtn">Clear roles</button>
       </div>
 
       <div class="roles" id="rolesArea" style="margin-top:10px;"></div>
@@ -457,11 +495,11 @@
           <input id="capCtrlLeg" type="text" placeholder="Link to: capability / control / legitimacy" aria-label="Link to concept" />
         </div>
 
-        <textarea id="justification" placeholder="Write your justification (2–4 sentences). Include one table number and one political logic." aria-label="Justification text"></textarea>
+        <textarea id="justification" placeholder="Write a short justification (2–4 sentences)." aria-label="Justification text"></textarea>
 
         <div class="btnbar">
-          <button class="good" id="saveDecisionBtn">Save decision</button>
-          <button class="secondary" id="loadMyDecisionBtn">Load saved</button>
+          <button class="good" type="button" id="saveDecisionBtn">Save decision</button>
+          <button class="secondary" type="button" id="loadMyDecisionBtn">Load saved</button>
         </div>
 
         <div class="small" id="saveStatus" aria-live="polite"></div>
@@ -470,23 +508,22 @@
       <div class="hr"></div>
 
       <div class="btnbar">
-        <button class="secondary" id="exportJsonBtn">Export JSON</button>
-        <button class="secondary" id="exportCsvBtn">Export CSV</button>
-        <button class="secondary" id="copyDebriefBtn">Copy debrief prompts</button>
+        <button class="secondary" type="button" id="exportJsonBtn">Export JSON</button>
+        <button class="secondary" type="button" id="exportCsvBtn">Export CSV</button>
+        <button class="secondary" type="button" id="copyDebriefBtn">Copy debrief prompts</button>
       </div>
 
       <div class="footer">
-        Debrief prompts are built-in and mapped to your teaching demo: constraints, capability vs leverage, indicator choice, authority, and small-state strategy.
+        Debrief prompts focus on constraints, capability vs leverage, and small-state strategy.
       </div>
     </div>
-  </aside>
+  </section>
 </div>
 
 <script>
 (() => {
-  // ----------------------------
-  // Data (illustrative values)
-  // ----------------------------
+  "use strict";
+
   const countries = [
     { country: "United States", rnd: 3.5, dep: 20, reg: 4.5, work: 9.0 },
     { country: "China",         rnd: 2.6, dep: 15, reg: 4.0, work: 7.5 },
@@ -503,9 +540,6 @@
     work: { label: "Tech Workforce Density (per 1,000)", higherBetter: true }
   };
 
-  // ----------------------------
-  // DOM helpers
-  // ----------------------------
   const $ = (sel) => document.querySelector(sel);
   const el = (tag, attrs = {}, children = []) => {
     const n = document.createElement(tag);
@@ -519,12 +553,15 @@
     return n;
   };
 
-  // ----------------------------
-  // Render data table
-  // ----------------------------
   function renderTable() {
     const table = $("#dataTable");
     table.innerHTML = "";
+
+    const caption = el("caption", { class: "small", style: "caption-side: top; text-align:left; padding: 8px 10px;" }, [
+      "Illustrative indicators used for in-class discussion (not empirical claims)."
+    ]);
+    table.appendChild(caption);
+
     const thead = el("thead");
     const trh = el("tr");
     trh.appendChild(el("th", {}, ["Country"]));
@@ -548,11 +585,6 @@
     table.appendChild(tbody);
   }
 
-  // ----------------------------
-  // Normalization & scoring
-  // Score is 0–100 for each metric, then weighted average.
-  // For dep, lower is better, so invert.
-  // ----------------------------
   function minMax(metric) {
     const vals = countries.map(c => c[metric]);
     return { min: Math.min(...vals), max: Math.max(...vals) };
@@ -560,49 +592,47 @@
 
   function norm(value, metric) {
     const { min, max } = minMax(metric);
-    if (max === min) return 50; // degenerate
+    if (max === min) return 50;
     let x = (value - min) / (max - min);
     if (!metricMeta[metric].higherBetter) x = 1 - x;
     return x * 100;
   }
 
   function getWeights() {
-    // sliders store 0..100; normalize to sum 1.00
     const raw = {
       rnd: Number($("#wRnD").value),
       dep: Number($("#wDep").value),
       reg: Number($("#wReg").value),
       work: Number($("#wWork").value)
     };
-    const sum = raw.rnd + raw.dep + raw.reg + raw.work;
+    const total = raw.rnd + raw.dep + raw.reg + raw.work;
     const w = {};
-    for (const k of Object.keys(raw)) w[k] = sum ? raw[k]/sum : 0.25;
-    return { w, sum };
+    for (const k of Object.keys(raw)) w[k] = total ? raw[k]/total : 0.25;
+    return w;
   }
 
   function updateWeightDisplays() {
-    const { w, sum } = getWeights();
+    const w = getWeights();
     $("#wRnDVal").textContent = w.rnd.toFixed(2);
     $("#wDepVal").textContent = w.dep.toFixed(2);
     $("#wRegVal").textContent = w.reg.toFixed(2);
     $("#wWorkVal").textContent = w.work.toFixed(2);
     $("#weightSum").textContent = (w.rnd+w.dep+w.reg+w.work).toFixed(2);
 
-    // cue text: show which weight dominates
     const entries = Object.entries(w).sort((a,b)=>b[1]-a[1]);
     const [topK, topV] = entries[0];
     const cueMap = {
-      rnd: "Innovation-heavy (capability)",
-      dep: "Autonomy-heavy (control via dependence)",
-      reg: "Governance-heavy (authority/legitimacy)",
-      work: "Human-capital-heavy (capacity scaling)"
+      rnd: "Innovation focus",
+      dep: "Autonomy focus",
+      reg: "Governance focus",
+      work: "Workforce focus"
     };
     $("#cueText").textContent = (topV >= 0.40) ? cueMap[topK] : "Balanced";
   }
 
   function computeScores() {
-    const { w } = getWeights();
-    const scored = countries.map(c => {
+    const w = getWeights();
+    return countries.map(c => {
       const s = (
         norm(c.rnd,"rnd")  * w.rnd +
         norm(c.dep,"dep")  * w.dep +
@@ -611,7 +641,6 @@
       );
       return { ...c, score: s };
     }).sort((a,b)=>b.score - a.score);
-    return scored;
   }
 
   function renderRanks() {
@@ -619,30 +648,30 @@
     list.innerHTML = "";
     const scored = computeScores();
     scored.forEach((c, idx) => {
+      const fill = el("div", { class:"rankfill" });
+      fill.style.width = `${Math.max(0, Math.min(100, c.score))}%`;
       list.appendChild(
         el("div", { class:"rankitem" }, [
-          el("div", { class:"left" }, [
-            el("div", { class:"badge" }, [String(idx+1)]),
-            el("div", { class:"country" }, [c.country])
+          el("div", { class:"ranktop" }, [
+            el("div", { class:"left" }, [
+              el("div", { class:"badge" }, [String(idx+1)]),
+              el("div", { class:"country" }, [c.country])
+            ]),
+            el("div", { class:"score" }, [c.score.toFixed(1)])
           ]),
-          el("div", { class:"score" }, [c.score.toFixed(1)])
+          el("div", { class:"rankbar" }, [fill])
         ])
       );
     });
   }
 
-  // ----------------------------
-  // Weights controls
-  // ----------------------------
   function setSlidersFromWeights(w) {
-    // set raw approx by multiplying by 100 and adjusting to sum 100
     const raw = {
       rnd: Math.round(w.rnd*100),
       dep: Math.round(w.dep*100),
       reg: Math.round(w.reg*100),
       work: Math.round(w.work*100)
     };
-    // fix rounding error to sum 100
     const keys = ["rnd","dep","reg","work"];
     let s = keys.reduce((acc,k)=>acc+raw[k],0);
     while (s !== 100) {
@@ -676,95 +705,50 @@
     renderRanks();
   }
 
-  // ----------------------------
-  // Simulation roles
-  // ----------------------------
   const roleTemplates = [
-    {
-      id: "US",
-      name: "Large Tech-Producing State A (US-like)",
-      tag: "State",
-      bullets: [
-        "High capability: R&D + workforce.",
-        "Can threaten export controls / deny access.",
-        "Trade-off: credibility vs market backlash."
-      ]
-    },
-    {
-      id: "CN",
-      name: "Large Tech-Producing State B (China-like)",
-      tag: "State",
-      bullets: [
-        "Strong scaling capacity + domestic market.",
-        "Can offer substitute platforms, but political strings.",
-        "Trade-off: autonomy vs global legitimacy."
-      ]
-    },
-    {
-      id: "SM1",
-      name: "Small, capital-rich state (Gulf-like) — Group 1",
-      tag: "State",
-      bullets: [
-        "High dependence on foreign platforms.",
-        "Can buy redundancy, sign MOUs, diversify suppliers.",
-        "Trade-off: speed vs sovereignty and alignment."
-      ]
-    },
-    {
-      id: "SM2",
-      name: "Small, capital-rich state (Gulf-like) — Group 2",
-      tag: "State",
-      bullets: [
-        "Seeks reputation and regime stability.",
-        "Can invest in compute, data centers, and standards.",
-        "Trade-off: openness vs control and legitimacy."
-      ]
-    },
-    {
-      id: "PF1",
-      name: "Platform Firm A (Cloud/AI provider)",
-      tag: "Firm",
-      bullets: [
-        "Controls access through terms-of-service and compliance.",
-        "Can offer exceptions, throttling, or new pricing.",
-        "Trade-off: market share vs regulatory risk."
-      ]
-    },
-    {
-      id: "PF2",
-      name: "Platform Firm B (Competitor / alternative provider)",
-      tag: "Firm",
-      bullets: [
-        "Can absorb demand displaced by the shock.",
-        "May offer migration tools and credits.",
-        "Trade-off: rapid growth vs geopolitical exposure."
-      ]
-    },
-    {
-      id: "REG1",
-      name: "Regulator / Standards Bloc A (EU-like)",
-      tag: "Institution",
-      bullets: [
-        "Sets compliance terms; claims legitimacy through law.",
-        "Can impose fines, transparency rules, audit regimes.",
-        "Trade-off: innovation concerns vs public authority."
-      ]
-    },
-    {
-      id: "REG2",
-      name: "International Institution / Multilateral Forum",
-      tag: "Institution",
-      bullets: [
-        "Can convene, coordinate, and propose norms.",
-        "Limited enforcement; relies on buy-in.",
-        "Trade-off: inclusivity vs decisive action."
-      ]
-    }
+    { id:"US", name:"Large Tech-Producing State A (US-like)", tag:"State", bullets:[
+      "High capability: R&D + workforce.",
+      "Can restrict exports or deny access.",
+      "Trade-off: credibility vs market backlash."
+    ]},
+    { id:"CN", name:"Large Tech-Producing State B (China-like)", tag:"State", bullets:[
+      "Strong scaling capacity + domestic market.",
+      "Can offer substitutes, but political strings.",
+      "Trade-off: autonomy vs legitimacy."
+    ]},
+    { id:"SM1", name:"Small, capital-rich state (Gulf-like) — Group 1", tag:"State", bullets:[
+      "High dependence on foreign platforms.",
+      "Can buy redundancy and diversify suppliers.",
+      "Trade-off: speed vs sovereignty."
+    ]},
+    { id:"SM2", name:"Small, capital-rich state (Gulf-like) — Group 2", tag:"State", bullets:[
+      "Seeks reputation and regime stability.",
+      "Can invest in compute and standards.",
+      "Trade-off: openness vs control."
+    ]},
+    { id:"PF1", name:"Platform Firm A (Cloud/AI provider)", tag:"Firm", bullets:[
+      "Controls access via terms-of-service.",
+      "Can throttle, exempt, or reprice.",
+      "Trade-off: market share vs regulation."
+    ]},
+    { id:"PF2", name:"Platform Firm B (Alternative provider)", tag:"Firm", bullets:[
+      "Can absorb demand displaced by shock.",
+      "May offer migration tools/credits.",
+      "Trade-off: growth vs exposure."
+    ]},
+    { id:"REG1", name:"Regulator / Standards Bloc A (EU-like)", tag:"Institution", bullets:[
+      "Sets compliance terms; claims legitimacy through law.",
+      "Can impose fines, audits, transparency rules.",
+      "Trade-off: innovation vs authority."
+    ]},
+    { id:"REG2", name:"International Institution / Multilateral Forum", tag:"Institution", bullets:[
+      "Can convene and coordinate norms.",
+      "Limited enforcement; relies on buy-in.",
+      "Trade-off: inclusivity vs speed."
+    ]}
   ];
 
-  // For a 10-person room: create up to 10 “seats” by duplicating some roles.
   function buildSeatsForTen() {
-    // 8 templates + 2 duplicates (small state + platform firm) for 10.
     const seats = [...roleTemplates];
     seats.push({ ...roleTemplates.find(r=>r.id==="SM1"), id:"SM1B", name:"Small, capital-rich state (Gulf-like) — Group 3" });
     seats.push({ ...roleTemplates.find(r=>r.id==="PF1"), id:"PF1B", name:"Platform Firm A (Cloud/AI provider) — Group 2" });
@@ -774,9 +758,9 @@
   const state = {
     phase: "Setup",
     seats: buildSeatsForTen(),
-    assignments: [],  // {seatId, participantName}
-    decisions: {},    // seatId -> decision object
-    timer: { totalSec: 300, remainingSec: 300, running: false, startedAt: null, interval: null }
+    assignments: [],
+    decisions: {},
+    timer: { totalSec: 300, remainingSec: 300, running: false, interval: null }
   };
 
   function setPhase(p) {
@@ -791,18 +775,18 @@
     const assignedMap = new Map(state.assignments.map(a => [a.seatId, a.participantName]));
     state.seats.forEach(seat => {
       const who = assignedMap.get(seat.id) || "";
-      const card = el("div", { class:"rolecard" }, [
-        el("div", { class:"rolehead" }, [
-          el("div", { class:"name" }, [seat.name]),
-          el("div", { class:"tag" }, [seat.tag + (who ? ` • ${who}` : "")])
-        ]),
-        el("div", { class:"small" }, ["Constraints & options:"]),
-        el("ul", {}, seat.bullets.map(b => el("li", {}, [b])))
-      ]);
-      area.appendChild(card);
+      area.appendChild(
+        el("div", { class:"rolecard" }, [
+          el("div", { class:"rolehead" }, [
+            el("div", { class:"name" }, [seat.name]),
+            el("div", { class:"tag" }, [seat.tag + (who ? ` • ${who}` : "")])
+          ]),
+          el("div", { class:"small" }, ["Constraints & options:"]),
+          el("ul", {}, seat.bullets.map(b => el("li", {}, [b])))
+        ])
+      );
     });
 
-    // role select options
     const roleSel = $("#roleSelect");
     const current = roleSel.value;
     roleSel.innerHTML = `<option value="">Select your role…</option>`;
@@ -816,16 +800,14 @@
   }
 
   function autoAssignRoles() {
-    // Assign generic participants P1..P10 (in-class you can rename quickly)
     state.assignments = [];
     const names = Array.from({length: 10}, (_,i)=>`P${i+1}`);
-    // shuffle seats
     const shuffled = [...state.seats].sort(()=>Math.random()-0.5);
     for (let i=0; i<Math.min(names.length, shuffled.length); i++) {
       state.assignments.push({ seatId: shuffled[i].id, participantName: names[i] });
     }
     renderRoles();
-    flashStatus("Roles assigned (P1–P10). You can edit names in exported JSON if needed.");
+    flashStatus("Roles assigned (P1–P10). Edit names in exported JSON if needed.");
   }
 
   function clearRoles() {
@@ -834,9 +816,6 @@
     flashStatus("Roles cleared.");
   }
 
-  // ----------------------------
-  // Timer
-  // ----------------------------
   function fmtTime(sec) {
     const m = Math.floor(sec/60);
     const s = sec % 60;
@@ -850,14 +829,25 @@
     $("#timeBar").style.width = `${Math.min(100, Math.max(0, pct))}%`;
   }
 
+  function stopTimer() {
+    if (state.timer.interval) {
+      clearInterval(state.timer.interval);
+      state.timer.interval = null;
+    }
+    state.timer.running = false;
+    $("#startBtn").disabled = false;
+    $("#pauseBtn").disabled = true;
+  }
+
   function startTimer() {
     if (state.timer.running) return;
+    stopTimer(); // hard reset any stray interval
     setPhase("Decision (5 minutes)");
     state.timer.running = true;
     $("#startBtn").disabled = true;
     $("#pauseBtn").disabled = false;
 
-    const tick = () => {
+    state.timer.interval = setInterval(() => {
       state.timer.remainingSec = Math.max(0, state.timer.remainingSec - 1);
       updateTimerUI();
       if (state.timer.remainingSec === 0) {
@@ -865,18 +855,7 @@
         setPhase("Debrief");
         flashStatus("Time. Move to debrief prompts.");
       }
-    };
-
-    state.timer.interval = setInterval(tick, 1000);
-  }
-
-  function stopTimer() {
-    if (!state.timer.running) return;
-    state.timer.running = false;
-    clearInterval(state.timer.interval);
-    state.timer.interval = null;
-    $("#startBtn").disabled = false;
-    $("#pauseBtn").disabled = true;
+    }, 1000);
   }
 
   function pauseTimer() {
@@ -892,27 +871,30 @@
     setPhase("Setup");
   }
 
-  // ----------------------------
-  // Decisions (saved in localStorage)
-  // ----------------------------
   const LS_KEY = "platform_shock_sim_v1";
 
   function getSnapshot() {
-    const weights = getWeights().w;
     const ranking = computeScores().map(c => ({ country: c.country, score: Number(c.score.toFixed(1)) }));
     return {
       meta: {
-        title: "Platform Shock — Geopolitics of Technology",
+        title: "Platform Shock — Tech Power Basics",
         createdAt: new Date().toISOString(),
         phase: state.phase
       },
       data: { countries },
-      weights,
+      weights: getWeights(),
       ranking,
       assignments: state.assignments,
       decisions: state.decisions,
       timer: { totalSec: state.timer.totalSec, remainingSec: state.timer.remainingSec }
     };
+  }
+
+  function flashStatus(msg, isError=false) {
+    const node = $("#saveStatus");
+    node.textContent = msg;
+    node.style.color = isError ? "var(--bad)" : "var(--muted)";
+    setTimeout(() => { if (node.textContent === msg) node.textContent = ""; }, 3500);
   }
 
   function saveDecision() {
@@ -925,20 +907,16 @@
     if (!seatId) return flashStatus("Select a role first.", true);
     if (!action) return flashStatus("Choose an action.", true);
     if (!indicator) return flashStatus("Select an indicator.", true);
-    if (!link) return flashStatus("Link your logic to capability/control/legitimacy.", true);
-    if (justification.length < 20) return flashStatus("Write a short justification (at least ~20 characters).", true);
+    if (!link) return flashStatus("Link to capability/control/legitimacy.", true);
+    if (justification.length < 20) return flashStatus("Write 2–4 sentences.", true);
 
-    const decision = {
-      seatId,
-      action,
-      indicator,
-      conceptLink: link,
-      justification,
+    state.decisions[seatId] = {
+      seatId, action, indicator, conceptLink: link, justification,
       savedAt: new Date().toISOString()
     };
-    state.decisions[seatId] = decision;
+
     localStorage.setItem(LS_KEY, JSON.stringify(getSnapshot()));
-    flashStatus("Saved. You can export JSON/CSV for debrief.");
+    flashStatus("Saved. Export JSON/CSV for debrief.");
   }
 
   function loadMyDecision() {
@@ -960,25 +938,17 @@
       const raw = localStorage.getItem(LS_KEY);
       if (!raw) return;
       const snap = JSON.parse(raw);
+
       if (snap?.weights) setSlidersFromWeights(snap.weights);
       if (Array.isArray(snap.assignments)) state.assignments = snap.assignments;
       if (snap.decisions && typeof snap.decisions === "object") state.decisions = snap.decisions;
       if (snap.timer?.remainingSec != null) state.timer.remainingSec = snap.timer.remainingSec;
+      if (snap.meta?.phase) setPhase(String(snap.meta.phase));
     } catch(e) {
-      // ignore
+      // ignore bad localStorage
     }
   }
 
-  function flashStatus(msg, isError=false) {
-    const el = $("#saveStatus");
-    el.textContent = msg;
-    el.style.color = isError ? "var(--bad)" : "var(--muted)";
-    setTimeout(() => { if (el.textContent === msg) el.textContent = ""; }, 3500);
-  }
-
-  // ----------------------------
-  // Export
-  // ----------------------------
   function download(filename, text) {
     const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -992,33 +962,32 @@
   }
 
   function exportJSON() {
-    const snap = getSnapshot();
-    download("platform-shock-simulation.json", JSON.stringify(snap, null, 2));
+    download("platform-shock-simulation.json", JSON.stringify(getSnapshot(), null, 2));
+  }
+
+  function csv(x) {
+    const s = String(x ?? "");
+    if (/[,"\n]/.test(s)) return `"${s.replace(/"/g,'""')}"`;
+    return s;
   }
 
   function exportCSV() {
-    // Flatten decisions + weights + ranking
     const snap = getSnapshot();
     const rows = [];
 
-    // Decisions
     const decisions = Object.values(snap.decisions || {});
-    if (decisions.length === 0) {
-      rows.push(["seatId","roleName","action","indicator","conceptLink","justification","savedAt"].join(","));
-    } else {
-      rows.push(["seatId","roleName","action","indicator","conceptLink","justification","savedAt"].join(","));
-      for (const d of decisions) {
-        const roleName = state.seats.find(s=>s.id===d.seatId)?.name || d.seatId;
-        rows.push([
-          csv(d.seatId),
-          csv(roleName),
-          csv(d.action),
-          csv(d.indicator),
-          csv(d.conceptLink),
-          csv(d.justification),
-          csv(d.savedAt)
-        ].join(","));
-      }
+    rows.push(["seatId","roleName","action","indicator","conceptLink","justification","savedAt"].join(","));
+    for (const d of decisions) {
+      const roleName = state.seats.find(s=>s.id===d.seatId)?.name || d.seatId;
+      rows.push([
+        csv(d.seatId),
+        csv(roleName),
+        csv(d.action),
+        csv(d.indicator),
+        csv(d.conceptLink),
+        csv(d.justification),
+        csv(d.savedAt)
+      ].join(","));
     }
 
     rows.push("");
@@ -1032,47 +1001,34 @@
     download("platform-shock-decisions.csv", rows.join("\n"));
   }
 
-  function csv(x) {
-    const s = String(x ?? "");
-    if (/[,"\n]/.test(s)) return `"${s.replace(/"/g,'""')}"`;
-    return s;
-  }
-
-  // ----------------------------
-  // Debrief prompts
-  // ----------------------------
   const debriefText =
 `Debrief (5 minutes)
 
 1) Constraint and choice:
-   What was the first option you ruled out, and why? Was the constraint technological, economic, regulatory, or political?
+   What was the first option you ruled out, and why?
 
 2) Capability vs leverage:
-   Who had the most capability, and did that translate into the widest range of options? Who had fewer capabilities but retained leverage, and how?
+   Who had the most capability, and did that translate into the widest range of options?
 
 3) Quant grounding:
    Which indicator did you rely on? If we re-weighted that indicator, how would your choice change?
 
 4) Authority and legitimacy:
-   Who had the authority to define acceptable use of the technology? Did that authority come from law, market position, alliance politics, or norms?
+   Who had the authority to define acceptable use of the technology?
 
 5) Small-state strategy:
-   For small states, what strategy compensated for dependence rather than eliminating it? What does that imply about interdependence as influence vs vulnerability?`;
+   For small states, what strategy compensated for dependence rather than eliminating it?`;
 
   async function copyDebriefPrompts() {
     try{
       await navigator.clipboard.writeText(debriefText);
       flashStatus("Debrief prompts copied to clipboard.");
     } catch(e) {
-      // fallback: download
       download("platform-shock-debrief.txt", debriefText);
-      flashStatus("Clipboard blocked; downloaded debrief prompts instead.");
+      flashStatus("Clipboard blocked; downloaded prompts instead.");
     }
   }
 
-  // ----------------------------
-  // Wire events
-  // ----------------------------
   function init() {
     renderTable();
     loadFromLocalStorage();
@@ -1081,7 +1037,7 @@
     updateTimerUI();
 
     ["#wRnD","#wDep","#wReg","#wWork"].forEach(sel => {
-      $(sel).addEventListener("input", () => onWeightsChanged());
+      $(sel).addEventListener("input", onWeightsChanged);
     });
 
     $("#resetWeights").addEventListener("click", resetWeights);
@@ -1101,7 +1057,10 @@
     $("#exportCsvBtn").addEventListener("click", exportCSV);
     $("#copyDebriefBtn").addEventListener("click", copyDebriefPrompts);
 
-    // When a role is selected, prefill with saved decision if any
+    $("#exportPill").addEventListener("click", () => {
+      $("#decisionCard").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
     $("#roleSelect").addEventListener("change", () => {
       const seatId = $("#roleSelect").value;
       const snap = state.decisions[seatId];
@@ -1118,7 +1077,6 @@
       }
     });
 
-    // Persist weights + assignments frequently (lightweight)
     window.addEventListener("beforeunload", () => {
       try { localStorage.setItem(LS_KEY, JSON.stringify(getSnapshot())); } catch(e) {}
     });
