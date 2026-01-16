@@ -3,28 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Platform Shock — Basics</title>
+  <title>Platform Shock — Mini</title>
   <style>
     :root{
-      --bg:#0b1220;
-      --panel:#0f1a33;
-      --panel2:#101f3f;
-      --text:#eaf0ff;
-      --muted:#a9b6d3;
-      --line:rgba(255,255,255,.10);
-      --accent:#7c3aed;
-      --good:#22c55e;
-      --warn:#f59e0b;
-      --bad:#ef4444;
-      --radius:16px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --bg:#0b1220; --panel:rgba(255,255,255,.06); --line:rgba(255,255,255,.10);
+      --text:#eaf0ff; --muted:#a9b6d3; --accent:#7c3aed; --good:#22c55e;
+      --radius:16px; --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
     *{ box-sizing:border-box; }
     body{
-      margin:0;
-      font-family:var(--sans);
-      color:var(--text);
+      margin:0; font-family:var(--sans); color:var(--text);
       background:
         radial-gradient(900px 540px at 10% 0%, rgba(124,58,237,.22), transparent 60%),
         radial-gradient(900px 540px at 90% 10%, rgba(34,197,94,.14), transparent 55%),
@@ -32,17 +21,14 @@
     }
     header{
       position:sticky; top:0; z-index:10;
-      backdrop-filter: blur(10px);
       background: rgba(11,18,32,.72);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
     }
-    .wrap{ max-width:1100px; margin:0 auto; padding:14px 16px; }
-    .top{
-      display:flex; gap:12px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;
-    }
-    h1{ margin:0; font-size:18px; letter-spacing:.2px; }
-    .sub{ margin-top:4px; color:var(--muted); font-size:13px; max-width:760px; line-height:1.35; }
-    .chips{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .wrap{ max-width:1000px; margin:0 auto; padding:14px 16px; }
+    .top{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap; }
+    h1{ margin:0; font-size:16px; letter-spacing:.2px; }
+    .sub{ margin-top:4px; color:var(--muted); font-size:12px; line-height:1.3; max-width:720px; }
     .chip{
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
@@ -51,95 +37,59 @@
       display:flex; gap:6px; align-items:center;
     }
     .chip strong{ color:var(--text); font-weight:650; }
-    main .grid{
-      max-width:1100px; margin:14px auto 60px; padding:0 16px;
-      display:grid; grid-template-columns: 1.1fr .9fr; gap:12px;
-    }
-    @media (max-width: 900px){ main .grid{ grid-template-columns:1fr; } }
+    main{ max-width:1000px; margin:14px auto 60px; padding:0 16px; }
+    .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+
     .card{
       border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      background: var(--panel);
       border-radius: var(--radius);
-      overflow:hidden;
+      padding:14px;
     }
-    .card h2{
-      margin:0; padding:12px 14px;
-      font-size:13px; font-weight:700;
-      border-bottom:1px solid var(--line);
-      background: rgba(255,255,255,.03);
+    .title{
       display:flex; justify-content:space-between; align-items:center; gap:10px;
+      margin-bottom:10px;
     }
-    .body{ padding:14px; }
-    .muted{ color:var(--muted); font-size:12px; line-height:1.35; }
-    .row{ display:grid; grid-template-columns: 160px 1fr 54px; gap:10px; align-items:center; margin:10px 0; }
-    @media (max-width:520px){ .row{ grid-template-columns: 1fr; } }
-    label{ font-size:12px; color:var(--muted); }
+    .title h2{ margin:0; font-size:13px; font-weight:700; color:var(--text); }
+    .muted{ color:var(--muted); font-size:12px; }
+    .row{ display:grid; grid-template-columns: 120px 1fr 52px; gap:10px; align-items:center; margin:10px 0; }
+    label{ color:var(--muted); font-size:12px; }
     input[type="range"]{ width:100%; accent-color: var(--accent); }
     .num{
-      font-family:var(--mono);
-      font-size:12px;
+      font-family: var(--mono); font-size:12px;
       border:1px solid var(--line);
       background: rgba(0,0,0,.18);
-      padding:7px 8px;
-      border-radius:12px;
-      text-align:right;
+      padding:7px 8px; border-radius:12px; text-align:right;
     }
-    .weightbar{
-      height: 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      overflow:hidden;
-      background: rgba(0,0,0,.18);
-      display:flex;
-      margin-top: 12px;
-    }
-    .seg{ height:100%; }
-    .seg.rnd{ background: #6366f1; }
-    .seg.dep{ background: #f97316; }
-    .seg.reg{ background: #06b6d4; }
-    .seg.work{ background: #22c55e; }
-    .legend{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; font-size:12px; color:var(--muted); }
-    .dot{ width:10px; height:10px; border-radius:999px; display:inline-block; margin-right:6px; }
-    .dot.rnd{ background:#6366f1; } .dot.dep{ background:#f97316; } .dot.reg{ background:#06b6d4; } .dot.work{ background:#22c55e; }
-    table{ width:100%; border-collapse:collapse; font-size:12px; margin-top:10px; }
-    th,td{ border-bottom:1px solid var(--line); padding:8px 8px; text-align:left; }
-    th{ color:var(--muted); font-weight:700; }
     .rank{ display:grid; gap:8px; margin-top:8px; }
     .item{
       border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
       border-radius:14px;
       padding:10px;
-      background: rgba(0,0,0,.16);
     }
     .itemtop{ display:flex; justify-content:space-between; gap:10px; align-items:center; }
     .name{ font-size:13px; font-weight:650; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .score{ font-family:var(--mono); font-size:12px; color:var(--text); }
+    .score{ font-family:var(--mono); font-size:12px; }
     .barwrap{
       margin-top:8px; height:10px; border-radius:999px;
       background: rgba(255,255,255,.06);
       overflow:hidden; border:1px solid var(--line);
     }
     .bar{ height:100%; width:0%; background: linear-gradient(90deg, #7c3aed, #22c55e); }
-    .scenario{
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.16);
-      border-radius:14px;
-      padding:12px;
-      margin-bottom:12px;
-    }
-    .scenario h3{ margin:0 0 6px; font-size:13px; }
-    .scenario p{ margin:0; color:var(--muted); font-size:12px; line-height:1.35; }
+
     select, textarea, input[type="text"]{
       width:100%;
       border:1px solid var(--line);
-      background: rgba(0,0,0,.16);
+      background: rgba(0,0,0,.18);
       color:var(--text);
       border-radius:12px;
       padding:10px;
       font-size:13px;
       outline:none;
     }
-    textarea{ min-height: 110px; resize: vertical; }
+    textarea{ min-height: 100px; resize: vertical; }
     .btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
     button{
       border:1px solid var(--line);
@@ -153,168 +103,110 @@
     button:hover{ background: rgba(255,255,255,.10); }
     button.primary{ background: rgba(124,58,237,.22); border-color: rgba(124,58,237,.35); }
     button.primary:hover{ background: rgba(124,58,237,.30); }
-    button.good{ background: rgba(34,197,94,.18); border-color: rgba(34,197,94,.35); }
-    button.bad{ background: rgba(239,68,68,.18); border-color: rgba(239,68,68,.35); }
-    button:disabled{ opacity:.55; cursor:not-allowed; }
-    .status{ margin-top:8px; font-size:12px; color:var(--muted); min-height: 16px; }
-    .timer{
-      display:flex; justify-content:space-between; align-items:center; gap:10px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.16);
-      border-radius:14px;
-      padding:10px 12px;
-      margin-top:12px;
-    }
-    .tleft{ color:var(--muted); font-size:12px; }
-    .tval{ font-family:var(--mono); font-size:16px; }
+    .status{ margin-top:8px; font-size:12px; color:var(--muted); min-height:16px; }
   </style>
 </head>
+
 <body>
 <header>
   <div class="wrap top">
     <div>
-      <h1>Platform Shock — Basics</h1>
-      <div class="sub">Drag weights → see rankings change → pick a response and justify it using one indicator.</div>
+      <h1>Platform Shock — Mini</h1>
+      <div class="sub">Adjust weights → see rank → write one decision.</div>
     </div>
-    <div class="chips">
-      <div class="chip"><strong>Phase</strong> <span id="phase">Setup</span></div>
-      <div class="chip"><strong>Timer</strong> <span id="timerMini">--:--</span></div>
-      <div class="chip"><strong>Note</strong> <span>Dependency is inverted</span></div>
-    </div>
+    <div class="chip"><strong>Dependency</strong> <span>is inverted</span></div>
   </div>
 </header>
 
 <main>
   <div class="grid">
-    <section class="card">
-      <h2>
-        Leverage dashboard
-        <span class="muted" id="lens">Balanced</span>
-      </h2>
-      <div class="body">
-        <div class="muted">Weights are auto-normalized. Move one slider strongly to see “who wins” under that lens.</div>
+    <section class="card" aria-label="Weights">
+      <div class="title">
+        <h2>Weights</h2>
+        <div class="muted" id="lens">Balanced</div>
+      </div>
 
-        <div class="row">
-          <label for="wRnd">R&amp;D</label>
-          <input id="wRnd" type="range" min="0" max="100" value="30" />
-          <div class="num" id="wRndVal">0.30</div>
-        </div>
-        <div class="row">
-          <label for="wDep">Dependency</label>
-          <input id="wDep" type="range" min="0" max="100" value="25" />
-          <div class="num" id="wDepVal">0.25</div>
-        </div>
-        <div class="row">
-          <label for="wReg">Regulation</label>
-          <input id="wReg" type="range" min="0" max="100" value="25" />
-          <div class="num" id="wRegVal">0.25</div>
-        </div>
-        <div class="row">
-          <label for="wWork">Workforce</label>
-          <input id="wWork" type="range" min="0" max="100" value="20" />
-          <div class="num" id="wWorkVal">0.20</div>
-        </div>
+      <div class="row">
+        <label for="wRnd">R&amp;D</label>
+        <input id="wRnd" type="range" min="0" max="100" value="30" />
+        <div class="num" id="wRndVal">0.30</div>
+      </div>
+      <div class="row">
+        <label for="wDep">Dependency</label>
+        <input id="wDep" type="range" min="0" max="100" value="25" />
+        <div class="num" id="wDepVal">0.25</div>
+      </div>
+      <div class="row">
+        <label for="wReg">Regulation</label>
+        <input id="wReg" type="range" min="0" max="100" value="25" />
+        <div class="num" id="wRegVal">0.25</div>
+      </div>
+      <div class="row">
+        <label for="wWork">Workforce</label>
+        <input id="wWork" type="range" min="0" max="100" value="20" />
+        <div class="num" id="wWorkVal">0.20</div>
+      </div>
 
-        <div class="weightbar" aria-label="Weight composition bar">
-          <div class="seg rnd" id="segRnd" style="width:25%"></div>
-          <div class="seg dep" id="segDep" style="width:25%"></div>
-          <div class="seg reg" id="segReg" style="width:25%"></div>
-          <div class="seg work" id="segWork" style="width:25%"></div>
-        </div>
-
-        <div class="legend">
-          <span><span class="dot rnd"></span>R&amp;D</span>
-          <span><span class="dot dep"></span>Dependency (lower better)</span>
-          <span><span class="dot reg"></span>Regulation</span>
-          <span><span class="dot work"></span>Workforce</span>
-        </div>
-
-        <table aria-label="Indicator table">
-          <thead>
-            <tr>
-              <th>Actor</th><th>R&amp;D</th><th>Dep%</th><th>Reg</th><th>Work</th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-        </table>
-
-        <div class="btns">
-          <button type="button" id="reset">Reset weights</button>
-          <button type="button" id="random">Random weights</button>
-        </div>
-
-        <div class="timer">
-          <div>
-            <div class="tleft">Timer (optional)</div>
-            <div class="tval" id="timerMain">--:--</div>
-          </div>
-          <div class="btns" style="margin:0;">
-            <button type="button" class="good" id="startT">Start 3:00</button>
-            <button type="button" id="pauseT" disabled>Pause</button>
-            <button type="button" class="bad" id="resetT">Reset</button>
-          </div>
-        </div>
-
+      <div class="btns">
+        <button type="button" id="reset">Reset</button>
+        <button type="button" id="random">Random</button>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Live ranking (0–100)</h2>
-      <div class="body">
-        <div class="rank" id="rank"></div>
-
-        <div class="scenario" style="margin-top:12px;">
-          <h3>Scenario: Platform Shock</h3>
-          <p>A platform cuts access after a political dispute. Some actors lose models and compute in <span style="font-family:var(--mono);">72 hours</span>.</p>
-        </div>
-
-        <div class="muted">Decision (keep it short): choose action + one indicator + link to capability/control/legitimacy.</div>
-
-        <div style="margin-top:10px; display:grid; gap:10px;">
-          <select id="role">
-            <option value="">Your role…</option>
-            <option value="stateA">Large tech-producing state</option>
-            <option value="stateB">Rival tech-producing state</option>
-            <option value="smallstate">Small dependent state</option>
-            <option value="platform">Platform firm</option>
-            <option value="regulator">Regulator / standards bloc</option>
-          </select>
-
-          <select id="action">
-            <option value="">Choose action…</option>
-            <option>Regulate / mandate compliance</option>
-            <option>Substitute / build capacity</option>
-            <option>Bargain / concessions for access</option>
-            <option>Align / join bloc or standards regime</option>
-            <option>Diversify / stabilize quietly</option>
-            <option>Retaliate / restrict market access</option>
-          </select>
-
-          <select id="indicator">
-            <option value="">Indicator you used…</option>
-            <option value="rnd">R&amp;D</option>
-            <option value="dep">Dependency</option>
-            <option value="reg">Regulation</option>
-            <option value="work">Workforce</option>
-          </select>
-
-          <input id="concept" type="text" placeholder="Link to: capability / control / legitimacy" />
-          <textarea id="why" placeholder="Justification (2–4 sentences)."></textarea>
-
-          <div class="btns">
-            <button type="button" class="primary" id="save">Save decision</button>
-            <button type="button" id="load">Load saved</button>
-          </div>
-
-          <div class="btns">
-            <button type="button" id="json">Export JSON</button>
-            <button type="button" id="csv">Export CSV</button>
-            <button type="button" id="debrief">Copy debrief</button>
-          </div>
-
-          <div class="status" id="status" aria-live="polite"></div>
-        </div>
+    <section class="card" aria-label="Ranking">
+      <div class="title">
+        <h2>Ranking</h2>
+        <div class="muted">0–100</div>
       </div>
+      <div class="rank" id="rank"></div>
+    </section>
+
+    <section class="card" style="grid-column: 1 / -1;" aria-label="Decision">
+      <div class="title">
+        <h2>Decision</h2>
+        <div class="muted">2–3 sentences</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px;">
+        <select id="role" aria-label="Role">
+          <option value="">Role…</option>
+          <option value="stateA">Large tech-producing state</option>
+          <option value="stateB">Rival tech-producing state</option>
+          <option value="small">Small dependent state</option>
+          <option value="platform">Platform firm</option>
+          <option value="reg">Regulator / standards bloc</option>
+        </select>
+
+        <select id="action" aria-label="Action">
+          <option value="">Action…</option>
+          <option>Regulate</option>
+          <option>Substitute</option>
+          <option>Bargain</option>
+          <option>Align</option>
+          <option>Diversify</option>
+          <option>Retaliate</option>
+        </select>
+
+        <select id="indicator" aria-label="Indicator">
+          <option value="">Indicator…</option>
+          <option value="rnd">R&amp;D</option>
+          <option value="dep">Dependency</option>
+          <option value="reg">Regulation</option>
+          <option value="work">Workforce</option>
+        </select>
+      </div>
+
+      <div style="margin-top:10px; display:grid; grid-template-columns: 1fr 2fr; gap:10px;">
+        <input id="concept" type="text" placeholder="capability / control / legitimacy" aria-label="Concept link" />
+        <textarea id="why" placeholder="Write the justification here." aria-label="Justification"></textarea>
+      </div>
+
+      <div class="btns">
+        <button type="button" class="primary" id="save">Save</button>
+        <button type="button" id="export">Export JSON</button>
+        <button type="button" id="clear">Clear</button>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
     </section>
   </div>
 </main>
@@ -322,11 +214,10 @@
 <script>
 (() => {
   "use strict";
+  const LS = "platform_shock_mini_v1";
+  const $ = (s) => document.querySelector(s);
 
-  const LS = "platform_shock_basics_v1";
-
-  // Keep it small, illustrative.
-  const rows = [
+  const data = [
     { a: "United States", rnd: 3.5, dep: 20, reg: 4.5, work: 9.0 },
     { a: "China",        rnd: 2.6, dep: 15, reg: 4.0, work: 7.5 },
     { a: "EU",           rnd: 2.3, dep: 35, reg: 5.0, work: 6.8 },
@@ -342,13 +233,10 @@
     work:{ higherBetter: true }
   };
 
-  const $ = (s) => document.querySelector(s);
-
   function minMax(k){
-    const v = rows.map(r => r[k]);
+    const v = data.map(r => r[k]);
     return { min: Math.min(...v), max: Math.max(...v) };
   }
-
   function norm(x,k){
     const {min,max} = minMax(k);
     if (max === min) return 50;
@@ -373,7 +261,7 @@
   function setLens(w){
     const entries = Object.entries(w).sort((a,b)=>b[1]-a[1]);
     const [topK, topV] = entries[0];
-    const map = { rnd:"Innovation focus", dep:"Autonomy focus", reg:"Governance focus", work:"Workforce focus" };
+    const map = { rnd:"Innovation", dep:"Autonomy", reg:"Governance", work:"Workforce" };
     $("#lens").textContent = (topV >= 0.40) ? map[topK] : "Balanced";
   }
 
@@ -383,18 +271,12 @@
     $("#wDepVal").textContent = w.dep.toFixed(2);
     $("#wRegVal").textContent = w.reg.toFixed(2);
     $("#wWorkVal").textContent = w.work.toFixed(2);
-
-    $("#segRnd").style.width = `${(w.rnd*100).toFixed(0)}%`;
-    $("#segDep").style.width = `${(w.dep*100).toFixed(0)}%`;
-    $("#segReg").style.width = `${(w.reg*100).toFixed(0)}%`;
-    $("#segWork").style.width = `${(w.work*100).toFixed(0)}%`;
-
     setLens(w);
   }
 
   function scores(){
     const w = weights();
-    return rows.map(r => {
+    return data.map(r => {
       const s =
         norm(r.rnd,"rnd")*w.rnd +
         norm(r.dep,"dep")*w.dep +
@@ -402,16 +284,6 @@
         norm(r.work,"work")*w.work;
       return {...r, score:s};
     }).sort((a,b)=>b.score-a.score);
-  }
-
-  function renderTable(){
-    const tb = $("#tbody");
-    tb.innerHTML = "";
-    rows.forEach(r => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${r.a}</td><td>${r.rnd}</td><td>${r.dep}</td><td>${r.reg}</td><td>${r.work}</td>`;
-      tb.appendChild(tr);
-    });
   }
 
   function renderRank(){
@@ -431,95 +303,16 @@
     });
   }
 
-  function onChange(){
-    updateWeightUI();
-    renderRank();
-    saveSnapshot(); // autosave
-  }
-
-  function resetWeights(){
-    $("#wRnd").value = 30;
-    $("#wDep").value = 25;
-    $("#wReg").value = 25;
-    $("#wWork").value = 20;
-    onChange();
-  }
-
-  function randomWeights(){
-    const r = [Math.random(),Math.random(),Math.random(),Math.random()];
-    const s = r.reduce((a,b)=>a+b,0);
-    const w = { rnd:r[0]/s, dep:r[1]/s, reg:r[2]/s, work:r[3]/s };
-    // convert to slider integer-ish
-    $("#wRnd").value = Math.round(w.rnd*100);
-    $("#wDep").value = Math.round(w.dep*100);
-    $("#wReg").value = Math.round(w.reg*100);
-    $("#wWork").value = Math.round(w.work*100);
-    onChange();
-  }
-
   function status(msg, err=false){
     const el = $("#status");
     el.textContent = msg;
     el.style.color = err ? "var(--bad)" : "var(--muted)";
-    setTimeout(() => { if (el.textContent === msg) el.textContent = ""; }, 3200);
+    setTimeout(() => { if (el.textContent === msg) el.textContent = ""; }, 2500);
   }
 
-  // --- Timer (3 minutes) ---
-  const timer = { total: 180, left: 180, running:false, id:null };
-
-  function fmt(sec){
-    const m = Math.floor(sec/60), s = sec%60;
-    return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-  }
-  function timerUI(){
-    $("#timerMain").textContent = fmt(timer.left);
-    $("#timerMini").textContent = fmt(timer.left);
-  }
-  function stopTimer(){
-    if (timer.id) clearInterval(timer.id);
-    timer.id = null;
-    timer.running = false;
-    $("#startT").disabled = false;
-    $("#pauseT").disabled = true;
-  }
-  function startTimer(){
-    if (timer.running) return;
-    stopTimer();
-    $("#phase").textContent = "Decision";
-    timer.running = true;
-    $("#startT").disabled = true;
-    $("#pauseT").disabled = false;
-    timer.id = setInterval(() => {
-      timer.left = Math.max(0, timer.left - 1);
-      timerUI();
-      if (timer.left === 0){
-        stopTimer();
-        $("#phase").textContent = "Debrief";
-        status("Time. Move to debrief.");
-      }
-      saveSnapshot();
-    }, 1000);
-  }
-  function pauseTimer(){
-    if (!timer.running) return;
-    stopTimer();
-    $("#phase").textContent = "Paused";
-    saveSnapshot();
-  }
-  function resetTimer(){
-    stopTimer();
-    timer.left = timer.total;
-    timerUI();
-    $("#phase").textContent = "Setup";
-    saveSnapshot();
-  }
-
-  // --- Save/Load Decision ---
   function snapshot(){
     return {
-      meta:{ title:"Platform Shock — Basics", savedAt: new Date().toISOString() },
-      phase: $("#phase").textContent,
-      timer:{ total: timer.total, left: timer.left },
+      meta:{ title:"Platform Shock — Mini", savedAt: new Date().toISOString() },
       weights: weights(),
       ranking: scores().map(r => ({ actor:r.a, score:Number(r.score.toFixed(1)) })),
       decision:{
@@ -532,11 +325,11 @@
     };
   }
 
-  function saveSnapshot(){
+  function saveLocal(){
     try{ localStorage.setItem(LS, JSON.stringify(snapshot())); }catch(e){}
   }
 
-  function loadSnapshot(){
+  function loadLocal(){
     try{
       const raw = localStorage.getItem(LS);
       if (!raw) return;
@@ -554,24 +347,45 @@
         $("#concept").value = s.decision.concept || "";
         $("#why").value = s.decision.why || "";
       }
-      if (s.timer?.left != null) timer.left = s.timer.left;
-      if (s.phase) $("#phase").textContent = s.phase;
     }catch(e){}
   }
 
-  function saveDecision(){
+  function onChange(){
+    updateWeightUI();
+    renderRank();
+    saveLocal();
+  }
+
+  function resetWeights(){
+    $("#wRnd").value = 30;
+    $("#wDep").value = 25;
+    $("#wReg").value = 25;
+    $("#wWork").value = 20;
+    onChange();
+  }
+
+  function randomWeights(){
+    const r = [Math.random(),Math.random(),Math.random(),Math.random()];
+    const s = r.reduce((a,b)=>a+b,0);
+    $("#wRnd").value = Math.round((r[0]/s)*100);
+    $("#wDep").value = Math.round((r[1]/s)*100);
+    $("#wReg").value = Math.round((r[2]/s)*100);
+    $("#wWork").value = Math.round((r[3]/s)*100);
+    onChange();
+  }
+
+  function validateDecision(){
     const d = snapshot().decision;
-    if (!d.role) return status("Pick a role.", true);
-    if (!d.action) return status("Pick an action.", true);
-    if (!d.indicator) return status("Pick an indicator.", true);
-    if (!d.concept) return status("Link to capability/control/legitimacy.", true);
-    if ((d.why || "").length < 20) return status("Write 2–4 sentences.", true);
-    saveSnapshot();
-    status("Saved. Export when ready.");
+    if (!d.role) return "Pick a role.";
+    if (!d.action) return "Pick an action.";
+    if (!d.indicator) return "Pick an indicator.";
+    if (!d.concept) return "Add capability/control/legitimacy.";
+    if ((d.why || "").length < 20) return "Write 2–3 sentences.";
+    return "";
   }
 
   function download(name, text){
-    const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+    const blob = new Blob([text], {type:"application/json;charset=utf-8"});
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url; a.download = name;
@@ -580,76 +394,39 @@
     URL.revokeObjectURL(url);
   }
 
-  function exportJSON(){
-    download("platform-shock-basics.json", JSON.stringify(snapshot(), null, 2));
-  }
-
-  function csvCell(x){
-    const s = String(x ?? "");
-    return /[,"\n]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
-  }
-
-  function exportCSV(){
-    const s = snapshot();
-    const d = s.decision;
-    const lines = [];
-    lines.push(["role","action","indicator","concept","justification"].join(","));
-    lines.push([csvCell(d.role),csvCell(d.action),csvCell(d.indicator),csvCell(d.concept),csvCell(d.why)].join(","));
-    lines.push("");
-    lines.push(["weights","rnd","dep","reg","work"].join(","));
-    lines.push(["",s.weights.rnd.toFixed(4),s.weights.dep.toFixed(4),s.weights.reg.toFixed(4),s.weights.work.toFixed(4)].join(","));
-    lines.push("");
-    lines.push(["ranking","actor","score"].join(","));
-    s.ranking.forEach((r,i)=>lines.push([String(i+1),csvCell(r.actor),String(r.score)].join(",")));
-    download("platform-shock-basics.csv", lines.join("\n"));
-  }
-
-  const debrief =
-`Debrief (5 minutes)
-
-1) What did your weights assume about “power” (innovation, autonomy, governance, or workforce)?
-
-2) Who moved most when you changed weights, and why?
-
-3) Did the highest-score actor have the best political option set? If not, what constrained them?
-
-4) Your decision: which indicator did you cite, and how would the choice change if that indicator mattered less?
-
-5) For small states: what reduces dependence without pretending it disappears?`;
-
-  async function copyDebrief(){
-    try{
-      await navigator.clipboard.writeText(debrief);
-      status("Debrief copied.");
-    }catch(e){
-      download("platform-shock-debrief.txt", debrief);
-      status("Clipboard blocked; downloaded debrief.");
-    }
-  }
-
-  // init
-  renderTable();
-  loadSnapshot();
-  updateWeightUI();
-  renderRank();
-  timerUI();
-
+  // Wire UI
   ["#wRnd","#wDep","#wReg","#wWork"].forEach(id => $(id).addEventListener("input", onChange));
   $("#reset").addEventListener("click", resetWeights);
   $("#random").addEventListener("click", randomWeights);
 
-  $("#startT").addEventListener("click", startTimer);
-  $("#pauseT").addEventListener("click", pauseTimer);
-  $("#resetT").addEventListener("click", resetTimer);
+  $("#save").addEventListener("click", () => {
+    const err = validateDecision();
+    if (err) return status(err, true);
+    saveLocal();
+    status("Saved.");
+  });
 
-  $("#save").addEventListener("click", saveDecision);
-  $("#load").addEventListener("click", () => { loadSnapshot(); updateWeightUI(); renderRank(); timerUI(); status("Loaded."); });
+  $("#export").addEventListener("click", () => {
+    const err = validateDecision();
+    if (err) return status(err, true);
+    download("platform-shock-mini.json", JSON.stringify(snapshot(), null, 2));
+    status("Exported.");
+  });
 
-  $("#json").addEventListener("click", exportJSON);
-  $("#csv").addEventListener("click", exportCSV);
-  $("#debrief").addEventListener("click", copyDebrief);
+  $("#clear").addEventListener("click", () => {
+    $("#role").value = "";
+    $("#action").value = "";
+    $("#indicator").value = "";
+    $("#concept").value = "";
+    $("#why").value = "";
+    saveLocal();
+    status("Cleared.");
+  });
 
-  window.addEventListener("beforeunload", saveSnapshot);
+  // Init
+  loadLocal();
+  updateWeightUI();
+  renderRank();
 })();
 </script>
 </body>
